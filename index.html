@@ -17,6 +17,8 @@
   box-sizing:border-box;
 }
 
+/* ===== СТРАНИЦА ===== */
+
 html,
 body{
 
@@ -25,12 +27,72 @@ body{
 
   overflow:hidden;
 
-  background:transparent;
-
   font-family:'Geologica',sans-serif;
+
+  transition:background .3s ease;
 }
 
-/* ВИДЖЕТ */
+/* ===== ТЁМНАЯ ТЕМА ===== */
+
+@media (prefers-color-scheme: dark){
+
+  body{
+    background:#111111;
+  }
+
+  .widget{
+    background-image:url("https://i.ibb.co/JRbwjdX7/Chat-GPT-Image-19-2026-19-21-53.png");
+  }
+
+  .title,
+  .subtitle,
+  .number,
+  .label,
+  .deadline{
+
+    color:white;
+
+    text-shadow:
+      2px 2px 0 #000,
+     -2px -2px 0 #000,
+      2px -2px 0 #000,
+     -2px 2px 0 #000,
+      0 0 4px #000;
+  }
+
+}
+
+/* ===== СВЕТЛАЯ ТЕМА ===== */
+
+@media (prefers-color-scheme: light){
+
+  body{
+    background:#ffffff;
+  }
+
+  .widget{
+    background-image:url("https://i.ibb.co/JRbwjdX7/Chat-GPT-Image-19-2026-19-21-53.png");
+  }
+
+  .title,
+  .subtitle,
+  .number,
+  .label,
+  .deadline{
+
+    color:#ffffff;
+
+    text-shadow:
+      2px 2px 0 #000,
+     -2px -2px 0 #000,
+      2px -2px 0 #000,
+     -2px 2px 0 #000,
+      0 0 4px #000;
+  }
+
+}
+
+/* ===== ВИДЖЕТ ===== */
 
 .widget{
 
@@ -43,12 +105,11 @@ body{
 
   border-radius:38px;
 
-  background-image:url("https://i.ibb.co/JRbwjdX7/Chat-GPT-Image-19-2026-19-21-53.png");
   background-size:cover;
   background-position:center;
 }
 
-/* ТАЙМЕР */
+/* ===== ТАЙМЕР ===== */
 
 .timer{
 
@@ -64,25 +125,7 @@ body{
   text-align:center;
 }
 
-/* ОБЩИЙ ТЕКСТ */
-
-.title,
-.subtitle,
-.number,
-.label,
-.deadline{
-
-  color:white;
-
-  text-shadow:
-    2px 2px 0 #000,
-   -2px -2px 0 #000,
-    2px -2px 0 #000,
-   -2px 2px 0 #000,
-    0 0 4px #000;
-}
-
-/* TITLE */
+/* ===== ЗАГОЛОВОК ===== */
 
 .title{
 
@@ -94,7 +137,7 @@ body{
   margin-bottom:18px;
 }
 
-/* SUBTITLE */
+/* ===== ПОДЗАГОЛОВОК ===== */
 
 .subtitle{
 
@@ -104,7 +147,7 @@ body{
   margin-bottom:20px;
 }
 
-/* NUMBERS */
+/* ===== БЛОК ЦИФР ===== */
 
 .numbers{
 
@@ -116,13 +159,13 @@ body{
   margin-bottom:24px;
 }
 
-/* ITEM */
+/* ===== ОДНА КОЛОНКА ===== */
 
 .item{
   width:70px;
 }
 
-/* NUMBER */
+/* ===== ЦИФРЫ ===== */
 
 .number{
 
@@ -134,7 +177,7 @@ body{
   margin-bottom:3px;
 }
 
-/* LABEL */
+/* ===== ПОДПИСИ ===== */
 
 .label{
 
@@ -144,7 +187,7 @@ body{
   text-transform:uppercase;
 }
 
-/* DEADLINE */
+/* ===== ДЕДЛАЙН ===== */
 
 .deadline{
 
