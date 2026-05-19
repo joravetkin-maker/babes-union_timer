@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -19,30 +20,33 @@
 body{
   width:100%;
   min-height:100vh;
+
   display:flex;
   justify-content:center;
   align-items:center;
+
   background:transparent;
   overflow:hidden;
+
   font-family:'Geologica',sans-serif;
 }
 
-/* ===== ВЕСЬ ВИДЖЕТ ===== */
+/* ===== ВИДЖЕТ ===== */
 
 .widget{
   position:relative;
 
   width:620px;
-  aspect-ratio:1/1;
+  height:620px;
 
-  border-radius:38px;
   overflow:hidden;
+  border-radius:38px;
 
   background-image:url("https://i.ibb.co/JRbwjdX7/Chat-GPT-Image-19-2026-19-21-53.png");
   background-size:cover;
   background-position:center;
 
-  transform-origin:center;
+  transform-origin:top left;
 }
 
 /* ===== ТАЙМЕР ===== */
@@ -50,158 +54,97 @@ body{
 .timer{
   position:absolute;
 
+  width:420px;
+
   left:50%;
   top:56%;
 
   transform:translate(-50%,-50%);
 
-  width:72%;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
   text-align:center;
+}
+
+/* ===== ОБЩИЙ КОНТУР ===== */
+
+.title,
+.subtitle,
+.number,
+.label,
+.deadline{
+
+  color:white;
+
+  text-shadow:
+    0 3px 0 #000,
+    0 -3px 0 #000,
+    3px 0 0 #000,
+   -3px 0 0 #000,
+    2px 2px 0 #000,
+   -2px -2px 0 #000,
+    2px -2px 0 #000,
+   -2px 2px 0 #000;
+
 }
 
 /* ===== ЗАГОЛОВОК ===== */
 
 .title{
-  color:white;
-
-  font-size:42px;
+  font-size:34px;
   font-weight:800;
   line-height:0.95;
 
-  margin-bottom:20px;
-
-  text-shadow:
-    -4px -4px 0 #000,
-     4px -4px 0 #000,
-    -4px  4px 0 #000,
-     4px  4px 0 #000;
+  margin-bottom:18px;
 }
 
 /* ===== ПОДЗАГОЛОВОК ===== */
 
 .subtitle{
-  color:white;
-
-  font-size:20px;
+  font-size:16px;
   font-weight:700;
 
-  margin-bottom:26px;
-
-  text-shadow:
-    -3px -3px 0 #000,
-     3px -3px 0 #000,
-    -3px  3px 0 #000,
-     3px  3px 0 #000;
+  margin-bottom:20px;
 }
 
 /* ===== ЦИФРЫ ===== */
 
 .numbers{
-  width:100%;
-
   display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
+  justify-content:center;
 
-  gap:10px;
+  gap:16px;
 
-  margin-bottom:26px;
+  margin-bottom:20px;
 }
 
 .item{
-  flex:1;
+  width:82px;
 }
 
 /* ===== САМИ ЦИФРЫ ===== */
 
 .number{
-  color:white;
-
-  font-size:72px;
+  font-size:58px;
   font-weight:800;
   line-height:0.9;
 
-  margin-bottom:10px;
-
-  text-shadow:
-    -5px -5px 0 #000,
-     5px -5px 0 #000,
-    -5px  5px 0 #000,
-     5px  5px 0 #000;
+  margin-bottom:6px;
 }
 
 /* ===== ПОДПИСИ ===== */
 
 .label{
-  color:white;
-
-  font-size:18px;
+  font-size:13px;
   font-weight:700;
-  text-transform:uppercase;
 
-  text-shadow:
-    -3px -3px 0 #000,
-     3px -3px 0 #000,
-    -3px  3px 0 #000,
-     3px  3px 0 #000;
+  text-transform:uppercase;
 }
 
 /* ===== ДЕДЛАЙН ===== */
 
 .deadline{
-  color:white;
-
-  font-size:22px;
+  font-size:16px;
   font-weight:700;
-  line-height:1.15;
-
-  text-shadow:
-    -3px -3px 0 #000,
-     3px -3px 0 #000,
-    -3px  3px 0 #000,
-     3px  3px 0 #000;
-}
-
-/* ===== АДАПТИВ ===== */
-
-@media(max-width:700px){
-
-  .widget{
-    width:100vw;
-    border-radius:28px;
-  }
-
-  .timer{
-    width:78%;
-    top:57%;
-  }
-
-  .title{
-    font-size:32px;
-  }
-
-  .subtitle{
-    font-size:16px;
-  }
-
-  .number{
-    font-size:52px;
-  }
-
-  .label{
-    font-size:13px;
-  }
-
-  .deadline{
-    font-size:16px;
-  }
-
+  line-height:1.2;
 }
 
 </style>
@@ -269,14 +212,17 @@ function getCurrentPeriod(){
     start = 1;
     end = 7;
   }
+
   else if(day <= 15){
     start = 8;
     end = 15;
   }
+
   else if(day <= 22){
     start = 16;
     end = 22;
   }
+
   else{
     start = 23;
 
@@ -292,9 +238,18 @@ function updateTimer(){
   const now = new Date();
 
   const months = [
-    "ЯНВАРЯ","ФЕВРАЛЯ","МАРТА","АПРЕЛЯ",
-    "МАЯ","ИЮНЯ","ИЮЛЯ","АВГУСТА",
-    "СЕНТЯБРЯ","ОКТЯБРЯ","НОЯБРЯ","ДЕКАБРЯ"
+    "ЯНВАРЯ",
+    "ФЕВРАЛЯ",
+    "МАРТА",
+    "АПРЕЛЯ",
+    "МАЯ",
+    "ИЮНЯ",
+    "ИЮЛЯ",
+    "АВГУСТА",
+    "СЕНТЯБРЯ",
+    "ОКТЯБРЯ",
+    "НОЯБРЯ",
+    "ДЕКАБРЯ"
   ];
 
   const period = getCurrentPeriod();
@@ -309,9 +264,18 @@ function updateTimer(){
   const diff = deadline - now;
 
   const days = Math.floor(diff / (1000*60*60*24));
-  const hours = Math.floor((diff / (1000*60*60)) % 24);
-  const minutes = Math.floor((diff / (1000*60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+
+  const hours = Math.floor(
+    (diff / (1000*60*60)) % 24
+  );
+
+  const minutes = Math.floor(
+    (diff / (1000*60)) % 60
+  );
+
+  const seconds = Math.floor(
+    (diff / 1000) % 60
+  );
 
   document.getElementById("days").innerText =
     String(days).padStart(2,"0");
