@@ -1,356 +1,59 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    width:100%;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:transparent;
-    overflow:hidden;
-    font-family:'Geologica',sans-serif;
-}
-
-.widget{
-    position:relative;
-    width:100vw;
-    height:100vw;
-
-    max-width:620px;
-    max-height:620px;
-
-    border-radius:42px;
-    overflow:hidden;
-
-    background-image:url("background.png");
-    background-size:cover;
-    background-position:center;
-}
-
-/* ТАЙМЕР */
-
-.card{
-
-    position:absolute;
-
-    left:50%;
-    top:58%;
-
-    transform:translate(-50%,-50%);
-
-    width:62%;
-
-    padding:16px 14px;
-
-    border-radius:30px;
-
-    background:rgba(20,20,20,0.18);
-
-    backdrop-filter:blur(10px);
-
-    -webkit-backdrop-filter:blur(10px);
-
-    border:1px solid rgba(255,255,255,0.08);
-
-    text-align:center;
-
-}
-
-/* ЗАГОЛОВОК */
-
-.title{
-    color:white;
-
-    font-size:clamp(18px,2vw,34px);
-
-    font-weight:800;
-
-    line-height:1.05;
-
-    margin-bottom:10px;
-
-    text-shadow:
-    -3px -3px 0 #000,
-     3px -3px 0 #000,
-    -3px  3px 0 #000,
-     3px  3px 0 #000,
-     0px  3px 0 #000,
-     3px  0px 0 #000,
-    -3px  0px 0 #000,
-     0px -3px 0 #000;
-}
-
-/* ПОДЗАГОЛОВОК */
-
-.subtitle{
-    color:white;
-
-    font-size:clamp(10px,1vw,18px);
-
-    font-weight:700;
-
-    margin-bottom:16px;
-
-    text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000;
-}
-
-/* ЦИФРЫ */
-
-.numbers{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:12px;
-
-    margin-bottom:14px;
-}
-
-.item{
-    min-width:62px;
-}
-
-.number{
-    color:white;
-
-    font-size:clamp(26px,4vw,58px);
-
-    font-weight:800;
-
-    line-height:1;
-
-    text-shadow:
-    -3px -3px 0 #000,
-     3px -3px 0 #000,
-    -3px  3px 0 #000,
-     3px  3px 0 #000;
-}
-
-.label{
-    margin-top:4px;
-
-    color:white;
-
-    font-size:clamp(8px,1vw,13px);
-
-    font-weight:700;
-
-    text-transform:uppercase;
-
-    text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000;
-}
-
-/* ДЕДЛАЙН */
-
-.deadline{
-    color:white;
-
-    font-size:clamp(10px,1vw,18px);
-
-    font-weight:700;
-
-    line-height:1.25;
-
-    text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000;
-}
-
-/* МОБИЛКА */
-
-@media(max-width:600px){
-
-    .card{
-        width:68%;
-        padding:14px 12px;
-    }
-
-    .numbers{
-        gap:8px;
-    }
-
-    .item{
-        min-width:48px;
-    }
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="widget">
-
-    <div class="card">
-
-        <div class="title" id="periodTitle">
-            ОТЧЁТ 16–22 МАЯ
-        </div>
-
-        <div class="subtitle">
-            ⛓️ Осталось до сдачи:
-        </div>
-
-        <div class="numbers">
-
-            <div class="item">
-                <div class="number" id="days">00</div>
-                <div class="label">дни</div>
-            </div>
-
-            <div class="item">
-                <div class="number" id="hours">00</div>
-                <div class="label">часы</div>
-            </div>
-
-            <div class="item">
-                <div class="number" id="minutes">00</div>
-                <div class="label">минуты</div>
-            </div>
-
-            <div class="item">
-                <div class="number" id="seconds">00</div>
-                <div class="label">секунды</div>
-            </div>
-
-        </div>
-
-        <div class="deadline" id="deadlineText">
-            ⛓️‍💥 Дедлайн: 22 мая до 21:00 МСК
-        </div>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div class="widget">
+
+  <div class="card">
+
+    <div class="title" id="periodTitle">
+      ОТЧЁТ 16–22 МАЯ
+    </div>
+
+    <div class="subtitle">
+      ⛓️ Осталось до сдачи:
+    </div>
+
+    <div class="numbers">
+
+      <div class="item">
+        <div class="number" id="days">00</div>
+        <div class="label">дни</div>
+      </div>
+
+      <div class="item">
+        <div class="number" id="hours">00</div>
+        <div class="label">часы</div>
+      </div>
+
+      <div class="item">
+        <div class="number" id="minutes">00</div>
+        <div class="label">минуты</div>
+      </div>
+
+      <div class="item">
+        <div class="number" id="seconds">00</div>
+        <div class="label">секунды</div>
+      </div>
 
     </div>
 
+    <div class="deadline" id="deadlineText">
+      ⛓️‍💥 Дедлайн: 22 мая до 21:00 МСК
+    </div>
+
+  </div>
+
 </div>
+    <script  src="./script.js"></script>
 
-<script>
-
-function getCurrentPeriod(){
-
-    const now = new Date();
-
-    const year = now.getFullYear();
-    const month = now.getMonth();
-
-    const date = now.getDate();
-
-    let start,end,deadlineDay;
-
-    if(date >=1 && date <=7){
-        start=1;
-        end=7;
-        deadlineDay=7;
-    }
-
-    else if(date >=8 && date <=15){
-        start=8;
-        end=15;
-        deadlineDay=15;
-    }
-
-    else if(date >=16 && date <=22){
-        start=16;
-        end=22;
-        deadlineDay=22;
-    }
-
-    else{
-
-        start=23;
-
-        const lastDay =
-            new Date(year,month+1,0).getDate();
-
-        end=lastDay;
-
-        deadlineDay=lastDay;
-    }
-
-    return{
-        start,
-        end,
-        deadline:new Date(year,month,deadlineDay,21,0,0)
-    };
-}
-
-function updateTimer(){
-
-    const now = new Date();
-
-    const period = getCurrentPeriod();
-
-    const diff =
-        period.deadline - now;
-
-    const days =
-        Math.floor(diff / (1000*60*60*24));
-
-    const hours =
-        Math.floor((diff / (1000*60*60)) % 24);
-
-    const minutes =
-        Math.floor((diff / (1000*60)) % 60);
-
-    const seconds =
-        Math.floor((diff / 1000) % 60);
-
-    document.getElementById("days").innerText =
-        String(days).padStart(2,'0');
-
-    document.getElementById("hours").innerText =
-        String(hours).padStart(2,'0');
-
-    document.getElementById("minutes").innerText =
-        String(minutes).padStart(2,'0');
-
-    document.getElementById("seconds").innerText =
-        String(seconds).padStart(2,'0');
-
-    const months = [
-        "ЯНВАРЯ","ФЕВРАЛЯ","МАРТА",
-        "АПРЕЛЯ","МАЯ","ИЮНЯ",
-        "ИЮЛЯ","АВГУСТА","СЕНТЯБРЯ",
-        "ОКТЯБРЯ","НОЯБРЯ","ДЕКАБРЯ"
-    ];
-
-    const monthName =
-        months[now.getMonth()];
-
-    document.getElementById("periodTitle").innerHTML =
-        `ОТЧЁТ ${period.start}–${period.end}<br>${monthName}`;
-
-    document.getElementById("deadlineText").innerHTML =
-        `⛓️‍💥 Дедлайн: ${period.end} ${monthName.toLowerCase()} до 21:00 МСК`;
-}
-
-updateTimer();
-
-setInterval(updateTimer,1000);
-
-</script>
-
-</body>
+  </body>
+  
 </html>
