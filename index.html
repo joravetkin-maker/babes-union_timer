@@ -35,6 +35,7 @@ body{
     position:relative;
 
     width:100%;
+
     max-width:780px;
 
     min-height:420px;
@@ -63,6 +64,7 @@ body{
     inset:0;
 
     width:100%;
+
     height:100%;
 
     object-fit:cover;
@@ -81,8 +83,8 @@ body{
     background:
     linear-gradient(
         180deg,
-        rgba(0,0,0,0.10),
-        rgba(0,0,0,0.28)
+        rgba(0,0,0,0.08),
+        rgba(0,0,0,0.22)
     );
 
     z-index:1;
@@ -102,19 +104,21 @@ body{
 
     justify-content:center;
 
-    align-items:center;
+    align-items:flex-start;
+
+    padding-top:90px;
 }
 
 /* TIMER CARD */
 
 .card{
 
-    padding:18px 24px;
+    padding:12px 18px;
 
     border-radius:24px;
 
     background:
-    rgba(255,255,255,0.025);
+    rgba(255,255,255,0.015);
 
     backdrop-filter:blur(8px);
 
@@ -126,7 +130,7 @@ body{
 
     width:100%;
 
-    max-width:560px;
+    max-width:460px;
 
     text-align:center;
 }
@@ -135,7 +139,7 @@ body{
 
 .title{
 
-    font-size:28px;
+    font-size:20px;
 
     line-height:1.05;
 
@@ -145,7 +149,7 @@ body{
 
     text-transform:uppercase;
 
-    margin-bottom:14px;
+    margin-bottom:10px;
 
     text-shadow:
     -2px -2px 0 #000,
@@ -159,13 +163,13 @@ body{
 
 .subtitle{
 
-    font-size:17px;
+    font-size:14px;
 
     font-weight:700;
 
     color:white;
 
-    margin-bottom:18px;
+    margin-bottom:14px;
 
     text-shadow:
     -1.5px -1.5px 0 #000,
@@ -180,23 +184,23 @@ body{
 
     display:flex;
 
-    gap:16px;
+    gap:10px;
 
     justify-content:center;
 
     flex-wrap:wrap;
 
-    margin-bottom:18px;
+    margin-bottom:14px;
 }
 
 .time-box{
 
-    min-width:82px;
+    min-width:64px;
 }
 
 .number{
 
-    font-size:52px;
+    font-size:38px;
 
     font-weight:800;
 
@@ -214,9 +218,9 @@ body{
 
 .label{
 
-    margin-top:8px;
+    margin-top:6px;
 
-    font-size:14px;
+    font-size:11px;
 
     font-weight:600;
 
@@ -233,7 +237,7 @@ body{
 
 .deadline{
 
-    font-size:18px;
+    font-size:14px;
 
     font-weight:700;
 
@@ -251,36 +255,52 @@ body{
 @media(max-width:700px){
 
     .widget{
-        min-height:360px;
-        padding:16px;
+
+        min-height:340px;
+
+        padding:14px;
+    }
+
+    .content{
+
+        padding-top:70px;
     }
 
     .card{
-        padding:16px 18px;
+
+        padding:10px 14px;
+
+        max-width:380px;
     }
 
     .title{
-        font-size:22px;
+
+        font-size:18px;
     }
 
     .subtitle{
-        font-size:15px;
-    }
 
-    .number{
-        font-size:42px;
-    }
-
-    .label{
         font-size:12px;
     }
 
+    .number{
+
+        font-size:30px;
+    }
+
+    .label{
+
+        font-size:10px;
+    }
+
     .deadline{
-        font-size:15px;
+
+        font-size:12px;
     }
 
     .time-box{
-        min-width:68px;
+
+        min-width:54px;
     }
 }
 
@@ -381,13 +401,10 @@ function getDeadlineData(){
 
     let deadline;
     let title;
-    let deadlineDay;
 
     /* 1–7 */
 
     if(day >= 1 && day <= 7){
-
-        deadlineDay = 7;
 
         deadline =
             new Date(
@@ -401,14 +418,11 @@ function getDeadlineData(){
 
         title =
             `ОТЧЁТ 1–7 ${months[month]}`;
-
     }
 
     /* 8–15 */
 
     else if(day >= 8 && day <= 15){
-
-        deadlineDay = 15;
 
         deadline =
             new Date(
@@ -422,14 +436,11 @@ function getDeadlineData(){
 
         title =
             `ОТЧЁТ 8–15 ${months[month]}`;
-
     }
 
     /* 16–22 */
 
     else if(day >= 16 && day <= 22){
-
-        deadlineDay = 22;
 
         deadline =
             new Date(
@@ -443,10 +454,9 @@ function getDeadlineData(){
 
         title =
             `ОТЧЁТ 16–22 ${months[month]}`;
-
     }
 
-    /* 23–END */
+    /* 23–конец месяца */
 
     else{
 
@@ -456,8 +466,6 @@ function getDeadlineData(){
                 month + 1,
                 0
             ).getDate();
-
-        deadlineDay = lastDay;
 
         deadline =
             new Date(
@@ -475,8 +483,7 @@ function getDeadlineData(){
 
     return {
         deadline,
-        title,
-        deadlineDay
+        title
     };
 }
 
@@ -491,8 +498,6 @@ function updateTimer(){
 
     let diff =
         deadline - now;
-
-    /* IF DEADLINE PASSED */
 
     if(diff < 0){
 
