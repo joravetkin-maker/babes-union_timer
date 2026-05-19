@@ -17,25 +17,23 @@
   box-sizing:border-box;
 }
 
-html{
-  background:transparent;
-}
-
+/* УБИРАЕТ БЕЛЫЙ ФОН */
+html,
 body{
   width:100%;
-  min-height:100vh;
+  height:100%;
+
+  background:transparent !important;
+  overflow:hidden;
 
   display:flex;
   justify-content:center;
   align-items:center;
 
-  background:transparent;
-  overflow:hidden;
-
   font-family:'Geologica',sans-serif;
 }
 
-/* ===== ВИДЖЕТ ===== */
+/* ВИДЖЕТ */
 
 .widget{
   position:relative;
@@ -45,23 +43,21 @@ body{
 
   overflow:hidden;
 
-  border-radius:0px;
+  border-radius:38px;
 
   background-image:url("https://i.ibb.co/JRbwjdX7/Chat-GPT-Image-19-2026-19-21-53.png");
   background-size:cover;
   background-position:center;
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display:block;
 }
 
-/* ===== ТАЙМЕР ===== */
+/* ТАЙМЕР */
 
 .timer{
   position:absolute;
 
-  width:210px;
+  width:220px;
 
   left:50%;
   top:57%;
@@ -71,7 +67,7 @@ body{
   text-align:center;
 }
 
-/* ===== ОБЩИЙ КОНТУР ===== */
+/* ОБЩИЙ КОНТУР */
 
 .title,
 .subtitle,
@@ -90,20 +86,19 @@ body{
    -1px -1px 0 #000,
     1px -1px 0 #000,
    -1px 1px 0 #000;
-
 }
 
-/* ===== ЗАГОЛОВОК ===== */
+/* ЗАГОЛОВОК */
 
 .title{
-  font-size:20px;
+  font-size:21px;
   font-weight:800;
   line-height:0.95;
 
   margin-bottom:18px;
 }
 
-/* ===== ПОДЗАГОЛОВОК ===== */
+/* ПОДЗАГОЛОВОК */
 
 .subtitle{
   font-size:15px;
@@ -112,44 +107,46 @@ body{
   margin-bottom:20px;
 }
 
-/* ===== ЦИФРЫ ===== */
+/* БЛОК ЦИФР */
 
 .numbers{
   display:flex;
   justify-content:center;
 
-  gap:20px;
+  gap:18px;
 
-  margin-bottom:25px;
+  margin-bottom:24px;
 }
+
+/* ОДНА ЯЧЕЙКА */
 
 .item{
-  width:82px;
+  width:70px;
 }
 
-/* ===== САМИ ЦИФРЫ ===== */
+/* ЦИФРЫ */
 
 .number{
-  font-size:35px;
+  font-size:36px;
   font-weight:800;
   line-height:0.9;
 
-  margin-bottom:1px;
+  margin-bottom:3px;
 }
 
-/* ===== ПОДПИСИ ===== */
+/* ПОДПИСИ */
 
 .label{
-  font-size:13px;
+  font-size:12px;
   font-weight:700;
 
   text-transform:uppercase;
 }
 
-/* ===== ДЕДЛАЙН ===== */
+/* ДЕДЛАЙН */
 
 .deadline{
-  font-size:16px;
+  font-size:15px;
   font-weight:700;
   line-height:1.2;
 }
