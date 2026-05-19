@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Babes Union Report Timer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:transparent;
+}
+
+body{
+    font-family:'Geologica',sans-serif;
+}
+
+/* WIDGET */
+
+.widget{
+
+    position:relative;
+
+    width:100%;
+    max-width:780px;
+
+    min-height:420px;
+
+    overflow:hidden;
+
+    border-radius:34px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:34px;
+
+    isolation:isolate;
+}
+
+/* BACKGROUND IMAGE */
+
+.bg{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:0;
+}
+
+/* DARK OVERLAY */
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(0,0,0,0.18),
+        rgba(0,0,0,0.38)
+    );
+
+    z-index:1;
+}
+
+/* CONTENT */
+
+.content{
+
+    position:relative;
+
+    z-index:3;
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+}
+
+/* GLASS CARD */
+
+.card{
+
+    padding:26px 34px;
+
+    border-radius:28px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(14px);
+
+    border:
+    1px solid rgba(255,255,255,0.18);
+
+    box-shadow:
+    0 12px 40px rgba(0,0,0,0.28);
+}
+
+/* TITLE */
+
+.title{
+
+    font-size:40px;
+
+    line-height:1.05;
+
+    font-weight:800;
+
+    color:white;
+
+    text-transform:uppercase;
+
+    margin-bottom:18px;
+
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000,
+    0 8px 18px rgba(0,0,0,0.45);
+}
+
+/* SUBTITLE */
+
+.subtitle{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:white;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    -1.5px -1.5px 0 #000,
+    1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 #000,
+    1.5px 1.5px 0 #000;
+}
+
+/* TIMER */
+
+.timer{
+
+    display:flex;
+
+    gap:20px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    margin-bottom:24px;
+}
+
+.time-box{
+
+    min-width:110px;
+}
+
+.number{
+
+    font-size:72px;
+
+    font-weight:800;
+
+    line-height:0.95;
+
+    color:white;
+
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000,
+    0 10px 18px rgba(0,0,0,0.45);
+}
+
+.label{
+
+    margin-top:10px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:white;
+
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+/* DEADLINE */
+
+.deadline{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:white;
+
+    text-shadow:
+    -1.5px -1.5px 0 #000,
+    1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 #000,
+    1.5px 1.5px 0 #000;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .widget{
+        min-height:520px;
+        padding:20px;
+    }
+
+    .card{
+        padding:22px 20px;
+    }
+
+    .title{
+        font-size:28px;
+    }
+
+    .subtitle{
+        font-size:18px;
+    }
+
+    .number{
+        font-size:52px;
+    }
+
+    .time-box{
+        min-width:82px;
+    }
+
+    .label{
+        font-size:15px;
+    }
+
+    .deadline{
+        font-size:18px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="widget">
+
+    <!-- BACKGROUND -->
+    <img
+        class="bg"
+        src="background.png"
+        alt="background"
+    >
+
+    <div class="overlay"></div>
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+        <div class="card">
+
+            <div
+                class="title"
+                id="periodTitle"
+            >
+                ОТЧЁТ 1–7 МАЯ
+            </div>
+
+            <div class="subtitle">
+                ⛓️ Осталось до сдачи:
+            </div>
+
+            <div class="timer">
+
+                <div class="time-box">
+                    <div class="number" id="days">00</div>
+                    <div class="label">дни</div>
+                </div>
+
+                <div class="time-box">
+                    <div class="number" id="hours">00</div>
+                    <div class="label">часы</div>
+                </div>
+
+                <div class="time-box">
+                    <div class="number" id="minutes">00</div>
+                    <div class="label">минуты</div>
+                </div>
+
+                <div class="time-box">
+                    <div class="number" id="seconds">00</div>
+                    <div class="label">секунды</div>
+                </div>
+
+            </div>
+
+            <div
+                class="deadline"
+                id="deadlineText"
+            >
+                ⛓️‍💥 Дедлайн: 8 мая до 21:00
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const months = [
+    'ЯНВАРЯ',
+    'ФЕВРАЛЯ',
+    'МАРТА',
+    'АПРЕЛЯ',
+    'МАЯ',
+    'ИЮНЯ',
+    'ИЮЛЯ',
+    'АВГУСТА',
+    'СЕНТЯБРЯ',
+    'ОКТЯБРЯ',
+    'НОЯБРЯ',
+    'ДЕКАБРЯ'
+];
+
+function getDeadlineData(){
+
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const day = now.getDate();
+
+    let deadline;
+    let title;
+
+    if(day >= 1 && day <= 7){
+
+        deadline =
+            new Date(year,month,8,21,0,0);
+
+        title =
+            `ОТЧЁТ 1–7 ${months[month]}`;
+
+    }else if(day >= 8 && day <= 15){
+
+        deadline =
+            new Date(year,month,16,21,0,0);
+
+        title =
+            `ОТЧЁТ 8–15 ${months[month]}`;
+
+    }else if(day >= 16 && day <= 22){
+
+        deadline =
+            new Date(year,month,23,21,0,0);
+
+        title =
+            `ОТЧЁТ 16–22 ${months[month]}`;
+
+    }else{
+
+        const lastDay =
+            new Date(year,month+1,0).getDate();
+
+        deadline =
+            new Date(year,month+1,1,21,0,0);
+
+        title =
+            `ОТЧЁТ 23–${lastDay} ${months[month]}`;
+    }
+
+    return {
+        deadline,
+        title
+    };
+}
+
+function updateTimer(){
+
+    const now = new Date();
+
+    const {
+        deadline,
+        title
+    } = getDeadlineData();
+
+    const diff =
+        deadline - now;
+
+    const days =
+        Math.floor(diff / 1000 / 60 / 60 / 24);
+
+    const hours =
+        Math.floor(
+            diff / 1000 / 60 / 60
+        ) % 24;
+
+    const minutes =
+        Math.floor(
+            diff / 1000 / 60
+        ) % 60;
+
+    const seconds =
+        Math.floor(
+            diff / 1000
+        ) % 60;
+
+    document.getElementById('days').innerText =
+        String(days).padStart(2,'0');
+
+    document.getElementById('hours').innerText =
+        String(hours).padStart(2,'0');
+
+    document.getElementById('minutes').innerText =
+        String(minutes).padStart(2,'0');
+
+    document.getElementById('seconds').innerText =
+        String(seconds).padStart(2,'0');
+
+    document.getElementById('periodTitle').innerText =
+        title;
+
+    document.getElementById('deadlineText').innerText =
+        `⛓️‍💥 Дедлайн: ${
+            deadline.toLocaleDateString(
+                'ru-RU',
+                {
+                    day:'numeric',
+                    month:'long'
+                }
+            )
+        } до 21:00`;
+}
+
+updateTimer();
+
+setInterval(updateTimer,1000);
+
+</script>
+
+</body>
+</html>
