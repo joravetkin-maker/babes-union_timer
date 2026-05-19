@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Babes Union Timer</title>
 
@@ -17,13 +17,15 @@
   box-sizing:border-box;
 }
 
-/* УБИРАЕТ БЕЛЫЙ ФОН */
+/* УБИРАЕТ БЕЛЫЙ ФОН СТРАНИЦЫ */
+
 html,
 body{
   width:100%;
   height:100%;
 
   background:transparent !important;
+
   overflow:hidden;
 
   display:flex;
@@ -33,41 +35,57 @@ body{
   font-family:'Geologica',sans-serif;
 }
 
-/* ВИДЖЕТ */
+/* УБИРАЕТ БЕЛЫЕ ОТСТУПЫ */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:transparent !important;
+  pointer-events:none;
+}
+
+/* ГЛАВНЫЙ ВИДЖЕТ */
 
 .widget{
+
   position:relative;
 
   width:320px;
   height:320px;
 
+  border-radius:38px;
+
   overflow:hidden;
 
-  border-radius:38px;
+  background-color:transparent;
 
   background-image:url("https://i.ibb.co/JRbwjdX7/Chat-GPT-Image-19-2026-19-21-53.png");
   background-size:cover;
   background-position:center;
 
-  display:block;
+  box-shadow:none;
+
+  flex-shrink:0;
 }
 
 /* ТАЙМЕР */
 
 .timer{
+
   position:absolute;
 
   width:220px;
 
   left:50%;
-  top:57%;
+  top:58%;
 
   transform:translate(-50%,-50%);
 
   text-align:center;
 }
 
-/* ОБЩИЙ КОНТУР */
+/* ОБЩИЙ СТИЛЬ ТЕКСТА */
 
 .title,
 .subtitle,
@@ -75,25 +93,25 @@ body{
 .label,
 .deadline{
 
-  color:white;
+  color:#fff;
+
+  -webkit-text-stroke:2px #000;
+
+  paint-order:stroke fill;
 
   text-shadow:
-    0 2px 0 #000,
-    0 -2px 0 #000,
-    2px 0 0 #000,
-   -2px 0 0 #000,
-    1px 1px 0 #000,
-   -1px -1px 0 #000,
-    1px -1px 0 #000,
-   -1px 1px 0 #000;
+    0 0 2px #000,
+    0 0 4px #000;
 }
 
 /* ЗАГОЛОВОК */
 
 .title{
+
   font-size:21px;
   font-weight:800;
-  line-height:0.95;
+
+  line-height:0.92;
 
   margin-bottom:18px;
 }
@@ -101,24 +119,28 @@ body{
 /* ПОДЗАГОЛОВОК */
 
 .subtitle{
+
   font-size:15px;
   font-weight:700;
 
   margin-bottom:20px;
+
+  -webkit-text-stroke:1.3px #000;
 }
 
 /* БЛОК ЦИФР */
 
 .numbers{
+
   display:flex;
   justify-content:center;
 
-  gap:18px;
+  gap:16px;
 
   margin-bottom:24px;
 }
 
-/* ОДНА ЯЧЕЙКА */
+/* ОДНА КОЛОНКА */
 
 .item{
   width:70px;
@@ -127,8 +149,10 @@ body{
 /* ЦИФРЫ */
 
 .number{
+
   font-size:36px;
   font-weight:800;
+
   line-height:0.9;
 
   margin-bottom:3px;
@@ -137,18 +161,32 @@ body{
 /* ПОДПИСИ */
 
 .label{
+
   font-size:12px;
   font-weight:700;
 
   text-transform:uppercase;
+
+  -webkit-text-stroke:1px #000;
 }
 
 /* ДЕДЛАЙН */
 
 .deadline{
+
   font-size:15px;
   font-weight:700;
-  line-height:1.2;
+
+  line-height:1.15;
+
+  -webkit-text-stroke:1.2px #000;
+}
+
+/* ЭМОДЗИ БЕЗ ОБВОДКИ */
+
+.subtitle,
+.deadline{
+  filter:none;
 }
 
 </style>
@@ -210,28 +248,29 @@ function getCurrentPeriod(){
   const month = now.getMonth();
   const day = now.getDate();
 
-  let start,end;
+  let start;
+  let end;
 
   if(day <= 7){
+
     start = 1;
     end = 7;
-  }
 
-  else if(day <= 15){
+  } else if(day <= 15){
+
     start = 8;
     end = 15;
-  }
 
-  else if(day <= 22){
+  } else if(day <= 22){
+
     start = 16;
     end = 22;
-  }
 
-  else{
+  } else {
+
     start = 23;
 
-    const lastDay = new Date(year, month + 1, 0).getDate();
-    end = lastDay;
+    end = new Date(year, month + 1, 0).getDate();
   }
 
   return {start,end};
@@ -262,19 +301,21 @@ function updateTimer(){
     now.getFullYear(),
     now.getMonth(),
     period.end,
-    21,0,0
+    21,
+    0,
+    0
   );
 
   const diff = deadline - now;
 
-  const days = Math.floor(diff / (1000*60*60*24));
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
   const hours = Math.floor(
-    (diff / (1000*60*60)) % 24
+    (diff / (1000 * 60 * 60)) % 24
   );
 
   const minutes = Math.floor(
-    (diff / (1000*60)) % 60
+    (diff / (1000 * 60)) % 60
   );
 
   const seconds = Math.floor(
