@@ -1,4 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;700;800&display=swap');
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Babes Union Timer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
 
 *{
   margin:0;
@@ -7,7 +18,6 @@
 }
 
 body{
-
   width:100%;
   min-height:100vh;
 
@@ -16,13 +26,12 @@ body{
   align-items:center;
 
   background:transparent;
-
   overflow:hidden;
 
   font-family:'Geologica',sans-serif;
 }
 
-/* WIDGET */
+/* ОСНОВНОЙ ВИДЖЕТ */
 
 .widget{
 
@@ -32,36 +41,34 @@ body{
   height:620px;
 
   border-radius:42px;
-
   overflow:hidden;
 
   background-image:url("https://i.ibb.co/HLkfQzZM/background.png");
 
   background-size:cover;
   background-position:center;
-
-  transform-origin:top center;
 }
 
-/* CARD */
+/* ПЛАШКА */
 
 .card{
 
   position:absolute;
 
-  width:390px;
+  width:360px;
 
-  left:115px;
-  top:290px;
+  left:50%;
+  bottom:95px;
 
-  padding:16px 14px;
+  transform:translateX(-50%);
 
-  border-radius:30px;
+  padding:18px 14px;
 
-  background:rgba(20,20,20,0.12);
+  border-radius:34px;
+
+  background:rgba(15,15,15,0.10);
 
   backdrop-filter:blur(8px);
-
   -webkit-backdrop-filter:blur(8px);
 
   border:1px solid rgba(255,255,255,0.06);
@@ -69,14 +76,13 @@ body{
   text-align:center;
 }
 
-/* TITLE */
+/* ЗАГОЛОВОК */
 
 .title{
 
   color:white;
 
-  font-size:28px;
-
+  font-size:26px;
   font-weight:800;
 
   line-height:1.05;
@@ -90,17 +96,16 @@ body{
    3px  3px 0 #000;
 }
 
-/* SUBTITLE */
+/* ПОДЗАГОЛОВОК */
 
 .subtitle{
 
   color:white;
 
-  font-size:14px;
-
+  font-size:15px;
   font-weight:700;
 
-  margin-bottom:16px;
+  margin-bottom:14px;
 
   text-shadow:
   -2px -2px 0 #000,
@@ -109,30 +114,26 @@ body{
    2px  2px 0 #000;
 }
 
-/* NUMBERS */
+/* ЦИФРЫ */
 
 .numbers{
 
   display:flex;
-
   justify-content:center;
-  align-items:center;
-
-  gap:12px;
+  gap:14px;
 
   margin-bottom:14px;
 }
 
 .item{
-  min-width:62px;
+  min-width:58px;
 }
 
 .number{
 
   color:white;
 
-  font-size:42px;
-
+  font-size:52px;
   font-weight:800;
 
   line-height:1;
@@ -146,12 +147,11 @@ body{
 
 .label{
 
-  margin-top:4px;
+  margin-top:6px;
 
   color:white;
 
-  font-size:10px;
-
+  font-size:11px;
   font-weight:700;
 
   text-transform:uppercase;
@@ -163,14 +163,13 @@ body{
    2px  2px 0 #000;
 }
 
-/* DEADLINE */
+/* ДЕДЛАЙН */
 
 .deadline{
 
   color:white;
 
-  font-size:12px;
-
+  font-size:13px;
   font-weight:700;
 
   line-height:1.25;
@@ -181,3 +180,195 @@ body{
   -2px  2px 0 #000,
    2px  2px 0 #000;
 }
+
+/* МОБИЛКА */
+
+@media(max-width:700px){
+
+  .widget{
+    width:100vw;
+    height:100vw;
+    border-radius:0;
+  }
+
+  .card{
+
+    width:72%;
+
+    bottom:10%;
+
+    padding:14px 10px;
+  }
+
+  .title{
+    font-size:22px;
+  }
+
+  .subtitle{
+    font-size:13px;
+  }
+
+  .number{
+    font-size:42px;
+  }
+
+  .label{
+    font-size:9px;
+  }
+
+  .deadline{
+    font-size:11px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="widget">
+
+  <div class="card">
+
+    <div class="title" id="periodTitle">
+      ОТЧЁТ 16–22 МАЯ
+    </div>
+
+    <div class="subtitle">
+      ⛓️ Осталось до сдачи:
+    </div>
+
+    <div class="numbers">
+
+      <div class="item">
+        <div class="number" id="days">00</div>
+        <div class="label">дни</div>
+      </div>
+
+      <div class="item">
+        <div class="number" id="hours">00</div>
+        <div class="label">часы</div>
+      </div>
+
+      <div class="item">
+        <div class="number" id="minutes">00</div>
+        <div class="label">минуты</div>
+      </div>
+
+      <div class="item">
+        <div class="number" id="seconds">00</div>
+        <div class="label">секунды</div>
+      </div>
+
+    </div>
+
+    <div class="deadline" id="deadlineText">
+      ⛓️‍💥 Дедлайн: 22 мая до 21:00 МСК
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function updateTimer(){
+
+  const now = new Date();
+
+  const year = now.getFullYear();
+  const month = now.getMonth();
+
+  let period = {};
+
+  const day = now.getDate();
+
+  if(day <= 7){
+
+    period = {
+      start:1,
+      end:7,
+      deadline:new Date(year,month,7,21,0,0)
+    };
+
+  } else if(day <= 15){
+
+    period = {
+      start:8,
+      end:15,
+      deadline:new Date(year,month,15,21,0,0)
+    };
+
+  } else if(day <= 22){
+
+    period = {
+      start:16,
+      end:22,
+      deadline:new Date(year,month,22,21,0,0)
+    };
+
+  } else {
+
+    const lastDay = new Date(year,month+1,0).getDate();
+
+    period = {
+      start:23,
+      end:lastDay,
+      deadline:new Date(year,month,lastDay,21,0,0)
+    };
+
+  }
+
+  const diff = period.deadline - now;
+
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const minutes = Math.floor((diff / (1000*60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('days').innerText =
+    String(days).padStart(2,'0');
+
+  document.getElementById('hours').innerText =
+    String(hours).padStart(2,'0');
+
+  document.getElementById('minutes').innerText =
+    String(minutes).padStart(2,'0');
+
+  document.getElementById('seconds').innerText =
+    String(seconds).padStart(2,'0');
+
+  const months = [
+    'ЯНВАРЯ',
+    'ФЕВРАЛЯ',
+    'МАРТА',
+    'АПРЕЛЯ',
+    'МАЯ',
+    'ИЮНЯ',
+    'ИЮЛЯ',
+    'АВГУСТА',
+    'СЕНТЯБРЯ',
+    'ОКТЯБРЯ',
+    'НОЯБРЯ',
+    'ДЕКАБРЯ'
+  ];
+
+  const monthName = months[now.getMonth()];
+
+  document.getElementById('periodTitle').innerHTML =
+    `ОТЧЁТ ${period.start}–${period.end} ${monthName}`;
+
+  document.getElementById('deadlineText').innerHTML =
+    `⛓️‍💥 Дедлайн: ${period.end} ${monthName.toLowerCase()} до 21:00 МСК`;
+
+}
+
+updateTimer();
+
+setInterval(updateTimer,1000);
+
+</script>
+
+</body>
+</html>
